@@ -25,7 +25,8 @@ namespace LinearRegressionMLNet
             IDataView dataView = mlContext.Data.LoadFromTextFile<T>(dataPath, hasHeader: true, separatorChar: ',');
 
             var pipeline = mlContext.Transforms.CopyColumns(outputColumnName: "Label", inputColumnName: "cnt")
-                    .Append(mlContext.Transforms.Concatenate("Features", "season", "yr", "mnth", "holiday", "workingday", "weathersit", "temp", "hum", "windspeed"))
+                    .Append(mlContext.Transforms.Concatenate("Features", "season", "yr", "mnth", "holiday", "weekday", "workingday", "weathersit", "atemp", "temp", "hum", "windspeed"))
+                    //.Append(mlContext.Transforms.Concatenate("Features", "season", "yr", "mnth", "holiday", "workingday", "weathersit", "temp", "hum", "windspeed"))
                     .Append(mlContext.Regression.Trainers.FastTree());
 
             Console.WriteLine("=============== Create and Train the Model ===============");
